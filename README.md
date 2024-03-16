@@ -34,6 +34,11 @@ class ExampleScreen extends StatelessWidget {
         fontStyle: TextStyle(fontSize: 20, fontStyle: FontStyle.italic),
       ),
       PromptModel(
+        text: 'What is your favorite color?',
+        type: PromptType.multipleChoice,
+        multipleChoiceOptions: ['Red', 'Green', 'Blue', 'Yellow'],
+      ),
+      PromptModel(
         text: 'Are you a Developer?',
         type: PromptType.yesno,
         fontStyle: TextStyle(fontSize: 18, fontWeight: FontWeight.normal),
@@ -56,7 +61,6 @@ class ExampleScreen extends StatelessWidget {
         fontStyle: TextStyle(fontSize: 20, fontStyle: FontStyle.italic),
       ),
     ];
-
-    return PromptView(prompts: prompts);
+    return PromptView(prompts: prompts , backgroundColor: Colors.blueAccent);
   }
 }
