@@ -20,7 +20,28 @@ Check out the [demo video](https://drive.google.com/file/d/1vcCfNifq--Y-Q3YEHC2O
 - Background Color Seleciton
 - Compatible with Web, IOS, Android, or anywhere else flutter runs!
 
-## Example
+## Getting Started
+
+To integrate Prompts into your Flutter project, follow these simple steps:
+
+**Clone the Repository**: Clone the Prompts repository to your local machine using the following command:
+
+   ```bash
+   git clone https://github.com/mitch344/Prompts.git
+```
+**Add Files to Your Project**
+
+Copy the `prompt_model.dart` and `prompt_view.dart` files from the cloned repository into your Flutter project. These files contain the necessary components for implementing Prompts.
+
+**Usage**
+
+Use the `PromptModel` and `PromptView` classes in your Flutter project as demonstrated in the example below.
+
+**Acknowledgment**
+
+Ensure to provide proper credit to the authors of Prompts in your project's documentation or about page.
+
+## Example App
 ```dart
 class ExampleScreen extends StatelessWidget {
   const ExampleScreen({Key? key}) : super(key: key);
