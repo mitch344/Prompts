@@ -30,6 +30,12 @@ class ExampleScreen extends StatelessWidget {
         fontStyle: TextStyle(fontSize: 20, fontStyle: FontStyle.italic),
       ),
       PromptModel(
+        text: 'Set a value between 0 and 10',
+        type: PromptType.slider,
+        sliderMin: 0,
+        sliderMax: 10,
+      ),
+      PromptModel(
         text: 'What is your favorite color?',
         type: PromptType.multipleChoice,
         multipleChoiceOptions: ['Red', 'Green', 'Blue', 'Yellow'],
@@ -57,6 +63,6 @@ class ExampleScreen extends StatelessWidget {
         fontStyle: TextStyle(fontSize: 20, fontStyle: FontStyle.italic),
       ),
     ];
-    return PromptView(prompts: prompts , backgroundColor: Colors.blueAccent);
+    return PromptView(prompts: prompts , backgroundColor: Colors.purple);
   }
 }

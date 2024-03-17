@@ -9,6 +9,9 @@ class PromptModel {
   bool? noSelected;
   TextEditingController? controller;
   List<String>? multipleChoiceOptions;
+  int? sliderValue;
+  int? sliderMin;
+  int? sliderMax;
 
   PromptModel({
     required this.text,
@@ -19,7 +22,13 @@ class PromptModel {
     this.noSelected,
     this.controller,
     this.multipleChoiceOptions,
-  });
+    this.sliderValue,
+    this.sliderMin = 0,
+    this.sliderMax = 100,
+  }) {
+    sliderValue ??= sliderMin;
+    answer = sliderValue.toString();
+  }
 }
 
-enum PromptType { info, yesno, textbox, number, multipleChoice }
+enum PromptType { info, yesno, textbox, number, multipleChoice, slider }

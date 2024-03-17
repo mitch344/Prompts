@@ -75,29 +75,31 @@ class _PromptViewState extends State<PromptView>
     }
   }
 
-bool _validateInput() {
-  final currentPrompt = widget.prompts[_currentPromptIndex];
+  bool _validateInput() {
+    final currentPrompt = widget.prompts[_currentPromptIndex];
 
-  if (currentPrompt.type == PromptType.info) {
-    return true;
-  }
+    if (currentPrompt.type == PromptType.info) {
+      return true;
+    }
 
-  switch (currentPrompt.type) {
-    case PromptType.yesno:
-      return currentPrompt.yesSelected != null || currentPrompt.noSelected != null;
-    case PromptType.textbox:
-      return currentPrompt.answer != null &&
-          currentPrompt.answer!.trim().isNotEmpty &&
-          RegExp(r'^[a-zA-Z\s]+$').hasMatch(currentPrompt.answer!);
-    case PromptType.number:
-      return _isNumeric(currentPrompt.answer);
-    case PromptType.multipleChoice:
-      return currentPrompt.answer != null &&
-          currentPrompt.multipleChoiceOptions!.contains(currentPrompt.answer);
-    default:
-      return false;
+    switch (currentPrompt.type) {
+      case PromptType.yesno:
+        return currentPrompt.yesSelected != null || currentPrompt.noSelected != null;
+      case PromptType.textbox:
+        return currentPrompt.answer != null &&
+            currentPrompt.answer!.trim().isNotEmpty &&
+            RegExp(r'^[a-zA-Z\s]+$').hasMatch(currentPrompt.answer!);
+      case PromptType.number:
+        return _isNumeric(currentPrompt.answer);
+      case PromptType.multipleChoice:
+        return currentPrompt.answer != null &&
+            currentPrompt.multipleChoiceOptions!.contains(currentPrompt.answer);
+      case PromptType.slider:
+        return currentPrompt.sliderValue != null;
+      default:
+        return false;
+    }
   }
-}
 
   bool _isNumeric(String? value) {
     if (value == null) {
@@ -253,10 +255,36 @@ bool _validateInput() {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: buttons,
-        );  
-      default:
-        return const SizedBox();
-    }
+        );
+      case PromptType.slider:
+        return Column(
+          children: [
+            Slider(
+              value: (prompt.sliderValue ?? prompt.sliderMin ?? 0).toDouble(),
+              min: (prompt.sliderMin ?? 0).toDouble(),
+              max: (prompt.sliderMax ?? 100).toDouble(),
+              onChanged: (value) {
+                setState(() {
+                  prompt.sliderValue = value.round();
+                  prompt.answer = prompt.sliderValue.toString();
+                });
+              },
+            ),
+            Text(
+              prompt.answer ?? prompt.sliderValue.toString(),
+              style: const TextStyle(color: Colors.white, fontSize: 24),
+            ),
+            if (_currentPromptIndex == widget.prompts.length - 1 &&
+                prompt.sliderValue == prompt.sliderMin)
+              const Text(
+                'Please adjust the slider value',
+                style: TextStyle(color: Colors.red, fontSize: 16),
+              ),
+          ],
+        );
+        default:
+          return const SizedBox();
+      }
   }
 
   @override

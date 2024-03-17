@@ -4,7 +4,7 @@ Prompts is a Flutter UI control designed to guide users through a series of prom
 <div style="display: flex; flex-direction: row;">
     <img src="demoImages/demoimage.png" alt="Example Image" style="width: 30%;">
     <img src="demoImages/demoimage3.png" alt="Example Image" style="width: 30%;">
-    <img src="demoImages/demoimage2.png" alt="Example Image" style="width: 30%;">
+    <img src="demoImages/demoimage4.png" alt="Example Image" style="width: 30%;">
 </div>
 
 ## Demo Video
